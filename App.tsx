@@ -5,8 +5,9 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 // EXPO
-import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
+import { Asset } from "expo-asset";
+import { Ionicons } from "@expo/vector-icons";
 
 // COMPONENTS
 import { StatusBar } from "expo-status-bar";
@@ -20,12 +21,19 @@ const App: React.FC = () => {
     const onFinish = () => setLoading(false);
 
     const preload = async () => {
+        // 로드 폰트
         const fontToLoad = [Ionicons.font];
         const fontPromises = fontToLoad.map((font: any) =>
             Font.loadAsync(font)
         );
-        console.log(fontPromises);
-        await Promise.all(fontPromises);
+
+        // 로드 이미지
+        const imagesToLoad = [require("./assets/logo.png")];
+        const imagePromises = imagesToLoad.map((image: any) =>
+            Asset.loadAsync(image)
+        );
+
+        await Promise.all([fontPromises, imagePromises]);
     };
 
     if (loading) {
