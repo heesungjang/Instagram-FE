@@ -23,27 +23,16 @@ const App: React.FC = () => {
     const preload = async () => {
         // 로드 폰트
         const fontToLoad = [Ionicons.font];
-        const fontPromises = fontToLoad.map((font: any) =>
-            Font.loadAsync(font)
-        );
-
+        const fontPromises = fontToLoad.map((font: any) => Font.loadAsync(font));
         // 로드 이미지
         const imagesToLoad = [require("./assets/logo.png")];
-        const imagePromises = imagesToLoad.map((image: any) =>
-            Asset.loadAsync(image)
-        );
+        const imagePromises = imagesToLoad.map((image: any) => Asset.loadAsync(image));
 
-        await Promise.all([fontPromises, imagePromises]);
+        await Promise.all<Promise<void> | Promise<Asset[]>>([...fontPromises, ...imagePromises]);
     };
 
     if (loading) {
-        return (
-            <AppLoading
-                startAsync={preload}
-                onError={console.warn}
-                onFinish={onFinish}
-            />
-        );
+        return <AppLoading startAsync={preload} onError={console.warn} onFinish={onFinish} />;
     }
 
     return (
