@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { StackActions } from "@react-navigation/routers";
 import Welcome from "../screens/Welcome";
 import Login from "../screens/Login";
 import CreateAccount from "../screens/CreateAccount";

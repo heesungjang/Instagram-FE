@@ -1,22 +1,18 @@
 // REACT
 import React, { useState } from "react";
 
-// REACT NATIVE
-import { StyleSheet, Text, View } from "react-native";
-
 // EXPO
 import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 import { Ionicons } from "@expo/vector-icons";
 
 // COMPONENTS
-import { StatusBar } from "expo-status-bar";
 import AppLoading from "expo-app-loading";
-
-interface Error {}
+import LoggedOutNav from "./navigators/LoggedOutNav";
+import { NavigationContainer } from "@react-navigation/native";
 
 const App: React.FC = () => {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const onFinish = () => setLoading(false);
 
@@ -36,20 +32,10 @@ const App: React.FC = () => {
     }
 
     return (
-        <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <StatusBar style="auto" />
-        </View>
+        <NavigationContainer>
+            <LoggedOutNav />
+        </NavigationContainer>
     );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});
