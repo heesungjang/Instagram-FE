@@ -15,7 +15,7 @@ import CreateAccount from "../screens/CreateAccount";
 // TYPE
 export type RootStackParamList = {
     Welcome: { onPress: (event: GestureResponderEvent) => void };
-    Login: undefined;
+    Login: { onPress: (event: GestureResponderEvent) => void } | undefined;
     CreateAccount: undefined;
 };
 
