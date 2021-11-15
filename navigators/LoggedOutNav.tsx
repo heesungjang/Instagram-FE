@@ -23,7 +23,7 @@ const RootStack = createStackNavigator();
 
 const LoggedOutNav: React.FC = () => {
     return (
-        <RootStack.Navigator>
+        <RootStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
             <RootStack.Screen name="welcome" component={Welcome} />
             <RootStack.Screen name="Login" component={Login} />
             <RootStack.Screen name="CreateAccount" component={CreateAccount} />
