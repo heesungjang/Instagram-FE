@@ -1,10 +1,20 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { ReactChild } from "react";
+import { Text, View, TouchableOpacity } from "react-native";
 
-const Welcome: React.FC = () => {
+interface IProps {
+    children: ReactChild;
+}
+
+const Welcome: React.FC = ({ navigation }) => {
+    console.log(props);
     return (
         <View>
             <Text>Welcome</Text>
+            <TouchableOpacity onPress={navigation}>
+                <View>
+                    <Text>Go to Create Account</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     );
 };
