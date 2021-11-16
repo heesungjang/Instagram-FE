@@ -21,12 +21,10 @@ export type RootStackParamList = {
 
 const RootStack = createStackNavigator();
 
-const LoggedOutNav: React.FC = () => {
+const LoggedOutNav = () => {
     return (
-        <RootStack.Navigator
-            screenOptions={{ headerBackTitleVisible: false, headerTintColor: "black" }}
-        >
-            <RootStack.Screen name="welcome" component={Welcome} />
+        <RootStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
+            <RootStack.Screen name="welcome" component={Welcome} options={{ headerShown: false }} />
             <RootStack.Screen name="Login" component={Login} />
             <RootStack.Screen name="CreateAccount" component={CreateAccount} />
         </RootStack.Navigator>
