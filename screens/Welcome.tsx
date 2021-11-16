@@ -21,7 +21,7 @@ const Welcome = ({ navigation }: IProps) => {
         <Container>
             <Logo source={require("../assets/logo.png")} resizeMode="contain" />
 
-            <CreateAccount onPress={navigateCreateAccount}>
+            <CreateAccount disabled={false} onPress={navigateCreateAccount}>
                 <CreateAccountText>새로운 계정 만들기</CreateAccountText>
             </CreateAccount>
 
@@ -46,10 +46,12 @@ const Logo = styled.Image`
 `;
 
 const CreateAccount = styled.TouchableOpacity`
-    background-color: ${colors.blue};
+    width: 100%;
     padding: 12px;
     border-radius: 3px;
-    width: 100%;
+    margin-top: 6px;
+    background-color: ${colors.blue};
+    opacity: ${(props) => (props.disabled ? "0.5" : "1")};
 `;
 const CreateAccountText = styled.Text`
     color: white;

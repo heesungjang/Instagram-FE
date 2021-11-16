@@ -26,7 +26,11 @@ const LoggedOutNav = () => {
         <RootStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
             <RootStack.Screen name="welcome" component={Welcome} options={{ headerShown: false }} />
             <RootStack.Screen name="Login" component={Login} />
-            <RootStack.Screen name="CreateAccount" component={CreateAccount} />
+            <RootStack.Screen
+                name="CreateAccount"
+                component={CreateAccount}
+                options={{ headerTitle: "", headerTransparent: true, headerTintColor: "white" }}
+            />
         </RootStack.Navigator>
     );
 };
