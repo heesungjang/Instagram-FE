@@ -28,6 +28,7 @@ const App: React.FC = () => {
     };
 
     if (loading) {
+        // promise 작업이 모두 끝나면 onFinish 실행 --> loading state to true
         return <AppLoading startAsync={preload} onError={console.warn} onFinish={onFinish} />;
     }
 
