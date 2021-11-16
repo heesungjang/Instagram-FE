@@ -13,15 +13,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 type IProps = NativeStackScreenProps<RootStackParamList, "Welcome">;
 
 const Welcome = ({ navigation }: IProps) => {
+    // 라우팅 핸들러
+    const navigateToLogin = () => navigation.navigate("Login");
+    const navigateCreateAccount = () => navigation.navigate("CreateAccount");
+
     return (
         <Container>
             <Logo source={require("../assets/logo.png")} resizeMode="contain" />
-            <CreateAccount>
-                <TouchableOpacity>
-                    <CreateAccountText>회원가입</CreateAccountText>
-                </TouchableOpacity>
+
+            <CreateAccount onPress={navigateCreateAccount}>
+                <CreateAccountText>새로운 계정 만들기</CreateAccountText>
             </CreateAccount>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+
+            <TouchableOpacity onPress={navigateToLogin}>
                 <LoginLink>로그인</LoginLink>
             </TouchableOpacity>
         </Container>
@@ -33,21 +37,24 @@ const Container = styled.View`
     align-items: center;
     justify-content: center;
     background-color: black;
+    padding: 0 40px;
 `;
 
 const Logo = styled.Image`
-    height: 140px;
+    height: 120px;
     max-width: 50%;
 `;
 
-const CreateAccount = styled.View`
+const CreateAccount = styled.TouchableOpacity`
     background-color: ${colors.blue};
-    padding: 7px 10px;
+    padding: 12px;
     border-radius: 3px;
+    width: 100%;
 `;
 const CreateAccountText = styled.Text`
     color: white;
     font-weight: 600;
+    text-align: center;
 `;
 
 const LoginLink = styled.Text`
