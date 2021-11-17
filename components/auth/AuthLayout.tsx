@@ -1,6 +1,9 @@
 //REACT
 import React from "react";
 
+//RN
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
+
 //STYLE
 import styled from "styled-components/native";
 
@@ -9,11 +12,17 @@ interface IAuthLayout {
 }
 
 const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
+    const pullDownKeyboard = () => {
+        Keyboard.dismiss();
+    };
+
     return (
-        <Container>
-            <Logo source={require("../../assets/logo.png")} resizeMode="contain" />
-            {children}
-        </Container>
+        <TouchableWithoutFeedback style={{ flex: 1 }} onPress={pullDownKeyboard}>
+            <Container>
+                <Logo source={require("../../assets/logo.png")} resizeMode="contain" />
+                {children}
+            </Container>
+        </TouchableWithoutFeedback>
     );
 };
 
