@@ -4,12 +4,14 @@ import React from "react";
 //STYLE
 import styled from "styled-components/native";
 
-interface IAuthLayout {}
+interface IAuthLayout {
+    children: React.ReactNode;
+}
 
 const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
     return (
         <Container>
-            <Logo source={require("../assets/logo.png")} resizeMode="contain" />
+            <Logo source={require("../../assets/logo.png")} resizeMode="contain" />
             {children}
         </Container>
     );
@@ -27,6 +29,7 @@ const Logo = styled.Image`
     height: 120px;
     width: 100%;
     max-width: 50%;
+    margin-bottom: 20px;
 `;
 
 export default AuthLayout;

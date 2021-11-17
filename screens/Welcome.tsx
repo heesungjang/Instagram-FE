@@ -10,6 +10,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigators/LoggedOutNav";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+// COMPONENTS
+import AuthLayout from "../components/auth/AuthLayout";
+import AuthButton from "../components/auth/AuthButton";
+
 type IProps = NativeStackScreenProps<RootStackParamList, "Welcome">;
 
 const Welcome = ({ navigation }: IProps) => {
@@ -18,46 +22,18 @@ const Welcome = ({ navigation }: IProps) => {
     const navigateCreateAccount = () => navigation.navigate("CreateAccount");
 
     return (
-        <Container>
-            <Logo source={require("../assets/logo.png")} resizeMode="contain" />
-
-            <CreateAccount disabled={false} onPress={navigateCreateAccount}>
-                <CreateAccountText>새로운 계정 만들기</CreateAccountText>
-            </CreateAccount>
-
+        <AuthLayout>
+            <AuthButton
+                disabled={false}
+                onPress={navigateCreateAccount}
+                text="새로운 계정 만들기"
+            />
             <TouchableOpacity onPress={navigateToLogin}>
                 <LoginLink>로그인</LoginLink>
             </TouchableOpacity>
-        </Container>
+        </AuthLayout>
     );
 };
-
-const Container = styled.View`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    padding: 0 40px;
-`;
-
-const Logo = styled.Image`
-    height: 120px;
-    max-width: 50%;
-`;
-
-const CreateAccount = styled.TouchableOpacity`
-    width: 100%;
-    padding: 12px;
-    border-radius: 3px;
-    margin-top: 6px;
-    background-color: ${colors.blue};
-    opacity: ${(props) => (props.disabled ? "0.5" : "1")};
-`;
-const CreateAccountText = styled.Text`
-    color: white;
-    font-weight: 600;
-    text-align: center;
-`;
 
 const LoginLink = styled.Text`
     font-size: 15px;
