@@ -28,9 +28,9 @@ const Welcome = ({ navigation }: IProps) => {
                 onPress={navigateCreateAccount}
                 text="새로운 계정 만들기"
             />
-            <TouchableOpacity onPress={navigateToLogin}>
+            <LoginLinkWrapper onPress={navigateToLogin}>
                 <LoginLink>로그인</LoginLink>
-            </TouchableOpacity>
+            </LoginLinkWrapper>
         </AuthLayout>
     );
 };
@@ -40,6 +40,10 @@ const LoginLink = styled.Text`
     margin-top: 30px;
     font-weight: 800;
     color: ${colors.blue};
+`;
+
+const LoginLinkWrapper = styled.TouchableOpacity`
+    align-items: center;
 `;
 
 export default Welcome;

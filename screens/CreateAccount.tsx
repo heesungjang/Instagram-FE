@@ -9,6 +9,7 @@ import styled from "styled-components/native";
 import AuthButton from "../components/auth/AuthButton";
 
 //COMPONENTS
+import { AuthTextInput } from "../components/auth/AuthTextInput";
 import AuthLayout from "../components/auth/AuthLayout";
 
 const CreateAccount: React.FC = () => {
@@ -33,43 +34,44 @@ const CreateAccount: React.FC = () => {
                 behavior="padding"
                 keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
             >
-                <Input
-                    placeholder="First Name"
-                    placeholderTextColor="gray"
+                <AuthTextInput
+                    placeholder="이름"
                     returnKeyType="next"
                     onSubmitEditing={() => onNext(lastNameRef)}
+                    placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
                 />
-                <Input
-                    placeholder="Last Name"
-                    placeholderTextColor="gray"
-                    returnKeyType="next"
+                <AuthTextInput
                     ref={lastNameRef}
+                    placeholder="성"
+                    returnKeyType="next" // 키보드 입력 확인 버튼  text
                     onSubmitEditing={() => onNext(usernameRef)}
+                    placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
                 />
-                <Input
-                    placeholder="Username"
-                    placeholderTextColor="gray"
-                    returnKeyType="next"
+                <AuthTextInput
                     ref={usernameRef}
+                    placeholder="유저네임"
+                    returnKeyType="next" // 키보드 입력 확인 버튼  text
                     onSubmitEditing={() => onNext(emailRef)}
+                    placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
                 />
-                <Input
-                    placeholder="Email"
-                    placeholderTextColor="gray"
-                    keyboardType="email-address"
-                    returnKeyType="next"
+                <AuthTextInput
                     ref={emailRef}
+                    placeholder="이메일"
+                    keyboardType="email-address"
+                    returnKeyType="next" // 키보드 입력 확인 버튼  text
+                    placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
                     onSubmitEditing={() => onNext(passwordRef)}
                 />
-                <Input
-                    placeholder="Password"
-                    placeholderTextColor="gray"
-                    secureTextEntry
-                    returnKeyType="done"
+                <AuthTextInput
                     ref={passwordRef}
+                    lastOne={true}
+                    placeholder="비밀번호"
+                    secureTextEntry // 입력 값 감추기
+                    returnKeyType="done" // 키보드 입력 확인 버튼  text
                     onSubmitEditing={onDone}
+                    placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
                 />
-                <AuthButton text="Create Account" disabled={true} onPress={() => null} />
+                <AuthButton text="새로운 계정 만들기" disabled={true} onPress={() => null} />
             </KeyboardAvoidingView>
         </AuthLayout>
     );
