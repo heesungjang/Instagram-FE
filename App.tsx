@@ -11,6 +11,10 @@ import AppLoading from "expo-app-loading";
 import LoggedOutNav from "./navigators/LoggedOutNav";
 import { NavigationContainer } from "@react-navigation/native";
 
+//FETCH
+import client from "./apollo";
+import { ApolloProvider } from "@apollo/client";
+
 const App: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -33,9 +37,11 @@ const App: React.FC = () => {
     }
 
     return (
-        <NavigationContainer>
-            <LoggedOutNav />
-        </NavigationContainer>
+        <ApolloProvider client={client}>
+            <NavigationContainer>
+                <LoggedOutNav />
+            </NavigationContainer>
+        </ApolloProvider>
     );
 };
 
