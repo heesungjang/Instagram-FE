@@ -15,6 +15,7 @@ import { Platform } from "react-native";
 
 //FETCH
 import { gql, useMutation } from "@apollo/client";
+import { isLoggedInVar } from "../apollo";
 
 type IProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
@@ -37,7 +38,13 @@ const Login = ({ navigation }: IProps) => {
     const { register, handleSubmit, setValue, watch } = useForm();
 
     const onCompleted = (data: any) => {
-        console.log(data);
+        const {
+            login: { ok, token },
+        } = data;
+        if (ok) {
+            isLoggedInVar(true);
+            console.log(token);
+        }
     };
 
     const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, { onCompleted });
