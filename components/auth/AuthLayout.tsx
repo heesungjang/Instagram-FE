@@ -17,7 +17,11 @@ const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
     };
 
     return (
-        <TouchableWithoutFeedback style={{ flex: 1 }} onPress={pullDownKeyboard}>
+        <TouchableWithoutFeedback
+            style={{ flex: 1 }}
+            onPress={pullDownKeyboard}
+            disabled={Platform.OS === "web"}
+        >
             <Container>
                 <KeyboardAvoidingView
                     style={{
