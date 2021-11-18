@@ -13,6 +13,9 @@ import { AuthTextInput } from "../components/auth/AuthTextInput";
 import AuthButton from "../components/auth/AuthButton";
 import { Platform } from "react-native";
 
+//FETCH
+import { gql, useMutation } from "@apollo/client";
+
 type IProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
 type FormValues = {
@@ -20,13 +23,37 @@ type FormValues = {
     password: string;
 };
 
+const LOGIN_MUTATION = gql`
+    mutation login($username: String!, $password: String!) {
+        login(username: $username, password: $password) {
+            ok
+            token
+            error
+        }
+    }
+`;
+
 const Login = ({ navigation }: IProps) => {
-    const { register, handleSubmit, setValue } = useForm();
+    const { register, handleSubmit, setValue, watch } = useForm();
+
+    const onCompleted = (data: any) => {
+        console.log(data);
+    };
+
+    const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, { onCompleted });
+
     const passwordRef = useRef(null);
 
     const onValid: SubmitHandler<FormValues> = (data) => {
-        console.log(data);
+        if (!loading) {
+            logInMutation({
+                variables: {
+                    ...data,
+                },
+            });
+        }
     };
+
     const onNext = (nextInput: React.RefObject<TextInput>) => {
         nextInput?.current?.focus();
     };
@@ -55,6 +82,7 @@ const Login = ({ navigation }: IProps) => {
                     placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
                     onSubmitEditing={() => onNext(passwordRef)}
                     onChangeText={(text) => setValue("username", text)}
+                    autoCapitalize="none"
                 />
                 <AuthTextInput
                     placeholder="Password"
@@ -67,9 +95,9 @@ const Login = ({ navigation }: IProps) => {
                 />
                 <AuthButton
                     text="로그인"
-                    disabled={false}
+                    loading={loading}
                     onPress={handleSubmit(onValid)}
-                    loading={false}
+                    disabled={!watch("username") || !watch("password")}
                 />
             </KeyboardAvoidingView>
         </AuthLayout>
