@@ -1,8 +1,9 @@
 // REACT
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 // RN
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, TextInput } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 // NAVIGATOR
@@ -14,7 +15,27 @@ import { Platform } from "react-native";
 
 type IProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
+type FormValues = {
+    username: string;
+    password: string;
+};
+
 const Login = ({ navigation }: IProps) => {
+    const { register, handleSubmit, setValue } = useForm();
+    const passwordRef = useRef(null);
+
+    const onValid: SubmitHandler<FormValues> = (data) => {
+        console.log(data);
+    };
+    const onNext = (nextInput: React.RefObject<TextInput>) => {
+        nextInput?.current?.focus();
+    };
+
+    useEffect(() => {
+        register("username");
+        register("password");
+    }, [register]);
+
     return (
         <AuthLayout>
             <KeyboardAvoidingView
@@ -28,6 +49,8 @@ const Login = ({ navigation }: IProps) => {
                     placeholder="Username"
                     returnKeyType="next"
                     placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
+                    onSubmitEditing={() => onNext(passwordRef)}
+                    onChangeText={(text) => setValue("username", text)}
                 />
                 <AuthTextInput
                     placeholder="Password"
@@ -35,8 +58,10 @@ const Login = ({ navigation }: IProps) => {
                     returnKeyType="done"
                     lastOne={true}
                     placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
+                    onSubmitEditing={handleSubmit(onValid)}
+                    onChangeText={(text) => setValue("password", text)}
                 />
-                <AuthButton text="로그인" disabled={true} onPress={() => null} />
+                <AuthButton text="로그인" disabled={true} onPress={handleSubmit(onValid)} />
             </KeyboardAvoidingView>
         </AuthLayout>
     );
