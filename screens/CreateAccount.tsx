@@ -20,7 +20,7 @@ type FormValues = {
     password: string;
 };
 
-const CreateAccount: React.FC = () => {
+const CreateAccount = () => {
     const { register, handleSubmit, setValue } = useForm<FormValues>();
     const lastNameRef = useRef(null);
     const usernameRef = useRef(null);

@@ -12,10 +12,12 @@ import LoggedOutNav from "./navigators/LoggedOutNav";
 import { NavigationContainer } from "@react-navigation/native";
 
 //FETCH
-import client from "./apollo";
-import { ApolloProvider } from "@apollo/client";
+import client, { isLoggedInVar } from "./apollo";
+import { ApolloProvider, useReactiveVar } from "@apollo/client";
+import LoggedInNav from "./navigators/LoggedInNav";
 
 const App: React.FC = () => {
+    const isLoggedIn = useReactiveVar(isLoggedInVar);
     const [loading, setLoading] = useState<boolean>(true);
 
     const onFinish = () => setLoading(false);
@@ -39,7 +41,7 @@ const App: React.FC = () => {
     return (
         <ApolloProvider client={client}>
             <NavigationContainer>
-                <LoggedOutNav />
+                {isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}
             </NavigationContainer>
         </ApolloProvider>
     );

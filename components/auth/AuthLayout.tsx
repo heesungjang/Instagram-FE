@@ -49,7 +49,7 @@ const Container = styled.View`
 const Logo = styled.Image`
     height: 120px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 `;
 
 export default AuthLayout;
