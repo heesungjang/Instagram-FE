@@ -79,7 +79,7 @@ const CreateAccount: React.FC = () => {
                 />
                 <AuthTextInput
                     ref={usernameRef}
-                    placeholder="유저네임"
+                    placeholder="아이디"
                     returnKeyType="next" // 키보드 입력 확인 버튼  text
                     onSubmitEditing={() => onNext(emailRef)}
                     placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
@@ -106,7 +106,8 @@ const CreateAccount: React.FC = () => {
                 />
                 <AuthButton
                     text="새로운 계정 만들기"
-                    disabled={true}
+                    disabled={false}
+                    loading={false}
                     onPress={handleSubmit(onValid)}
                 />
             </KeyboardAvoidingView>

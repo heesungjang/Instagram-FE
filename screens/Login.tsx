@@ -32,8 +32,12 @@ const Login = ({ navigation }: IProps) => {
     };
 
     useEffect(() => {
-        register("username");
-        register("password");
+        register("username", {
+            required: true,
+        });
+        register("password", {
+            required: true,
+        });
     }, [register]);
 
     return (
@@ -61,7 +65,12 @@ const Login = ({ navigation }: IProps) => {
                     onSubmitEditing={handleSubmit(onValid)}
                     onChangeText={(text) => setValue("password", text)}
                 />
-                <AuthButton text="로그인" disabled={true} onPress={handleSubmit(onValid)} />
+                <AuthButton
+                    text="로그인"
+                    disabled={false}
+                    onPress={handleSubmit(onValid)}
+                    loading={false}
+                />
             </KeyboardAvoidingView>
         </AuthLayout>
     );

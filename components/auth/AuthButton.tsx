@@ -4,17 +4,19 @@ import React from "react";
 //STYLE
 import { colors } from "../../colors";
 import styled from "styled-components/native";
+import { ActivityIndicator } from "react-native";
 
 interface IAuthButton {
     disabled: boolean;
     onPress: () => void;
     text: string;
+    loading?: boolean;
 }
 
-const AuthButton: React.FC<IAuthButton> = ({ onPress, disabled, text }) => {
+const AuthButton: React.FC<IAuthButton> = ({ onPress, disabled, text, loading }) => {
     return (
         <Button disabled={disabled} onPress={onPress}>
-            <ButtonText>{text}</ButtonText>
+            {loading ? <ActivityIndicator color="white" /> : <ButtonText>{text}</ButtonText>}
         </Button>
     );
 };
