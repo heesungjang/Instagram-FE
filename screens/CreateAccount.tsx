@@ -10,7 +10,10 @@ import { AuthTextInput } from "../components/auth/AuthTextInput";
 import AuthLayout from "../components/auth/AuthLayout";
 
 //HELPER
+import { gql, useMutation } from "@apollo/client";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigators/LoggedOutNav";
 
 type FormValues = {
     firstName: string;
@@ -19,21 +22,64 @@ type FormValues = {
     username: string;
     password: string;
 };
+const CREATE_ACCOUNT_MUTATION = gql`
+    mutation createAccount(
+        $firstName: String!
+        $lastName: String
+        $username: String!
+        $email: String!
+        $password: String!
+    ) {
+        createAccount(
+            firstName: $firstName
+            lastName: $lastName
+            username: $username
+            email: $email
+            password: $password
+        ) {
+            ok
+            error
+        }
+    }
+`;
+type IProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
-const CreateAccount = () => {
-    const { register, handleSubmit, setValue } = useForm<FormValues>();
+const CreateAccount = ({ navigation }: IProps) => {
     const lastNameRef = useRef(null);
     const usernameRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
+    const { register, handleSubmit, setValue, getValues } = useForm<FormValues>();
+
     const onNext = (nextInput: React.RefObject<TextInput>) => {
         nextInput?.current?.focus();
     };
-
     const onValid: SubmitHandler<FormValues> = (data) => {
-        console.log(data);
+        if (!loading) {
+            createAccountMutation({
+                variables: {
+                    ...data,
+                },
+            });
+        }
     };
+
+    const onCompleted = (data: any) => {
+        const {
+            createAccount: { ok },
+        } = data;
+        const { username, password } = getValues();
+        if (ok) {
+            navigation.navigate<any>("Login", {
+                username: "",
+                password: "",
+            });
+        }
+    };
+    const [createAccountMutation, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
+        onCompleted,
+    });
 
     useEffect(() => {
         register("firstName", {
@@ -107,7 +153,7 @@ const CreateAccount = () => {
                 <AuthButton
                     text="새로운 계정 만들기"
                     disabled={false}
-                    loading={false}
+                    loading={loading}
                     onPress={handleSubmit(onValid)}
                 />
             </KeyboardAvoidingView>

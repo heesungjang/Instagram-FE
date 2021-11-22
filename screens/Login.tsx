@@ -34,8 +34,13 @@ const LOGIN_MUTATION = gql`
     }
 `;
 
-const Login = ({ navigation }: IProps) => {
-    const { register, handleSubmit, setValue, watch } = useForm();
+const Login = ({ route: { params } }: IProps) => {
+    const { register, handleSubmit, setValue, watch } = useForm({
+        defaultValues: {
+            username: params?.username,
+            password: params?.password,
+        },
+    });
 
     const onCompleted = (data: any) => {
         const {
@@ -84,6 +89,7 @@ const Login = ({ navigation }: IProps) => {
                 keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
             >
                 <AuthTextInput
+                    value={watch("username")}
                     placeholder="Username"
                     returnKeyType="next"
                     placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
@@ -92,6 +98,7 @@ const Login = ({ navigation }: IProps) => {
                     autoCapitalize="none"
                 />
                 <AuthTextInput
+                    value={watch("password")}
                     placeholder="Password"
                     secureTextEntry
                     returnKeyType="done"
