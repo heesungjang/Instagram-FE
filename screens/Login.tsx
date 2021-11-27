@@ -75,7 +75,7 @@ const Login = ({ route: { params } }: IProps) => {
       required: true,
     });
     register("password", {
-      // required: true,
+      required: true,
     });
   }, [register]);
 
