@@ -1,6 +1,6 @@
 // REACT
 import React, { useEffect, useRef } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 // RN
 import { KeyboardAvoidingView, TextInput } from "react-native";
@@ -18,19 +18,14 @@ import { gql, useMutation } from "@apollo/client";
 import { isLoggedInVar } from "../apollo";
 import { LOGIN_MUTATION } from "../quries";
 
-type IProps = NativeStackScreenProps<RootStackParamList, "Login">;
+type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
-type FormValues = {
-  username: string;
-  password: string;
-};
-
-const Login = ({ route: { params } }: IProps) => {
+const Login = ({ route: { params } }: LoginProps) => {
   const passwordRef = useRef(null);
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
-      username: "",
-      password: "",
+      username: params?.username,
+      password: params?.password,
     },
   });
 
@@ -43,7 +38,7 @@ const Login = ({ route: { params } }: IProps) => {
       console.log(token);
     }
   };
-  const onValid: SubmitHandler<FormValues> = (data) => {
+  const onValid: SubmitHandler<FieldValues> = (data) => {
     if (!loading) {
       logInMutation({
         variables: {

@@ -54,10 +54,7 @@ const CreateAccount = ({ navigation }: Props) => {
     } = data;
     const { username, password } = getValues();
     if (ok) {
-      navigation.navigate("Login", {
-        username: "",
-        password: "",
-      });
+      navigation.navigate("Login", { username, password });
     }
   };
   const [createAccountMutation, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
