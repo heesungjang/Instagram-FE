@@ -35,10 +35,11 @@ const LOGIN_MUTATION = gql`
 `;
 
 const Login = ({ route: { params } }: IProps) => {
+  const passwordRef = useRef(null);
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
-      username: params?.username,
-      password: params?.password,
+      username: "",
+      password: "",
     },
   });
 
@@ -51,11 +52,6 @@ const Login = ({ route: { params } }: IProps) => {
       console.log(token);
     }
   };
-
-  const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, { onCompleted });
-
-  const passwordRef = useRef(null);
-
   const onValid: SubmitHandler<FormValues> = (data) => {
     if (!loading) {
       logInMutation({
@@ -65,10 +61,11 @@ const Login = ({ route: { params } }: IProps) => {
       });
     }
   };
-
   const onNext = (nextInput: React.RefObject<TextInput>) => {
     nextInput?.current?.focus();
   };
+
+  const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, { onCompleted });
 
   useEffect(() => {
     register("username", {
@@ -98,6 +95,7 @@ const Login = ({ route: { params } }: IProps) => {
           autoCapitalize="none"
         />
         <AuthTextInput
+          ref={passwordRef}
           value={watch("password")}
           placeholder="Password"
           secureTextEntry
