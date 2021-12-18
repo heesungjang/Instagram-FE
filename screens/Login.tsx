@@ -16,6 +16,7 @@ import { Platform } from "react-native";
 //FETCH
 import { gql, useMutation } from "@apollo/client";
 import { isLoggedInVar } from "../apollo";
+import { LOGIN_MUTATION } from "../quries";
 
 type IProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
@@ -23,16 +24,6 @@ type FormValues = {
   username: string;
   password: string;
 };
-
-const LOGIN_MUTATION = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      ok
-      token
-      error
-    }
-  }
-`;
 
 const Login = ({ route: { params } }: IProps) => {
   const passwordRef = useRef(null);

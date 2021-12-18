@@ -14,28 +14,29 @@ import CreateAccount from "../screens/CreateAccount";
 
 // TYPE
 export type RootStackParamList = {
-    Welcome: { onPress: (event: GestureResponderEvent) => void };
-    Login: { onPress: (event: GestureResponderEvent) => void } | undefined;
-    CreateAccount: undefined;
+  Welcome: undefined;
+  //   Login: { onPress: (event: GestureResponderEvent) => void } | undefined;
+  Login: { username: string; password: string };
+  CreateAccount: undefined;
 };
 
-const RootStack = createStackNavigator();
+const RootStack = createStackNavigator<RootStackParamList>();
 
 const LoggedOutNav = () => {
-    return (
-        <RootStack.Navigator
-            screenOptions={{
-                headerBackTitleVisible: false,
-                headerTitle: undefined,
-                headerTransparent: true,
-                headerTintColor: "white",
-            }}
-        >
-            <RootStack.Screen name="welcome" component={Welcome} options={{ headerShown: false }} />
-            <RootStack.Screen name="Login" component={Login} />
-            <RootStack.Screen name="CreateAccount" component={CreateAccount} />
-        </RootStack.Navigator>
-    );
+  return (
+    <RootStack.Navigator
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerTitle: undefined,
+        headerTransparent: true,
+        headerTintColor: "white",
+      }}
+    >
+      <RootStack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
+      <RootStack.Screen name="Login" component={Login} />
+      <RootStack.Screen name="CreateAccount" component={CreateAccount} />
+    </RootStack.Navigator>
+  );
 };
 
 export default LoggedOutNav;
