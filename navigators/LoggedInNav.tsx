@@ -17,6 +17,7 @@ const LoggedInNav = () => {
   return (
     <RootTabs.Navigator
       screenOptions={{
+        tabBarShowLabel: false,
         tabBarStyle: { backgroundColor: "black", borderTopColor: "rgba(255,255,255,0.3)" },
         tabBarActiveTintColor: "white",
         headerShown: false,
@@ -26,14 +27,14 @@ const LoggedInNav = () => {
         name="Feed"
         component={Feed}
         options={{
-          tabBarIcon: ({ focused, color, size }) => <Ionicons name="home" color={color} size={focused ? 22 : 18} />,
+          tabBarIcon: ({ focused, color, size }) => <Ionicons name="home" color={color} size={focused ? 24 : 20} />,
         }}
       />
       <RootTabs.Screen
         name="Search"
         component={Search}
         options={{
-          tabBarIcon: ({ focused, color, size }) => <Ionicons name="search" color={color} size={focused ? 22 : 18} />,
+          tabBarIcon: ({ focused, color, size }) => <Ionicons name="search" color={color} size={focused ? 24 : 20} />,
         }}
       />
       <RootTabs.Screen
@@ -41,7 +42,7 @@ const LoggedInNav = () => {
         component={Notifications}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons name="notifications" color={color} size={focused ? 22 : 18} />
+            <Ionicons name="notifications" color={color} size={focused ? 24 : 20} />
           ),
         }}
       />
@@ -49,7 +50,7 @@ const LoggedInNav = () => {
         name="Profile"
         component={Profile}
         options={{
-          tabBarIcon: ({ focused, color, size }) => <Ionicons name="person" color={color} size={focused ? 22 : 18} />,
+          tabBarIcon: ({ focused, color, size }) => <Ionicons name="person" color={color} size={focused ? 24 : 20} />,
         }}
       />
     </RootTabs.Navigator>
