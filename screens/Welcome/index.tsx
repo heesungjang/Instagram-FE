@@ -2,17 +2,17 @@
 import React from "react";
 
 // STYLE
-import { colors } from "../colors";
+import { colors } from "../../colors";
 import styled from "styled-components/native";
 
 // NAVIGATOR
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigators/LoggedOutNav";
+import { RootStackParamList } from "../../navigators/LoggedOutNav";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 // COMPONENTS
-import AuthLayout from "../components/auth/AuthLayout";
-import AuthButton from "../components/auth/AuthButton";
+import AuthLayout from "../../components/auth/AuthLayout";
+import AuthButton from "../../components/auth/AuthButton";
 
 type WelcomeProps = NativeStackScreenProps<RootStackParamList, "Welcome">;
 

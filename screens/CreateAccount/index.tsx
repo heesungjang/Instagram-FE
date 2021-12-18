@@ -5,16 +5,16 @@ import React, { useRef, useEffect } from "react";
 import { KeyboardAvoidingView, Platform, TextInput } from "react-native";
 
 //COMPONENTS
-import AuthButton from "../components/auth/AuthButton";
-import { AuthTextInput } from "../components/auth/AuthTextInput";
-import AuthLayout from "../components/auth/AuthLayout";
+import AuthButton from "../../components/auth/AuthButton";
+import { AuthTextInput } from "../../components/auth/AuthTextInput";
+import AuthLayout from "../../components/auth/AuthLayout";
 
 //HELPER
 import { gql, useMutation } from "@apollo/client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../navigators/LoggedOutNav";
-import { CREATE_ACCOUNT_MUTATION } from "../quries";
+import { RootStackParamList } from "../../navigators/LoggedOutNav";
+import { CREATE_ACCOUNT_MUTATION } from "../../quries";
 import { createStackNavigator } from "@react-navigation/stack";
 
 type FormValues = {

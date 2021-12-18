@@ -7,16 +7,16 @@ import { KeyboardAvoidingView, TextInput } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 // NAVIGATOR
-import { RootStackParamList } from "../navigators/LoggedOutNav";
-import AuthLayout from "../components/auth/AuthLayout";
-import { AuthTextInput } from "../components/auth/AuthTextInput";
-import AuthButton from "../components/auth/AuthButton";
+import { RootStackParamList } from "../../navigators/LoggedOutNav";
+import AuthLayout from "../../components/auth/AuthLayout";
+import { AuthTextInput } from "../../components/auth/AuthTextInput";
+import AuthButton from "../../components/auth/AuthButton";
 import { Platform } from "react-native";
 
 //FETCH
 import { gql, useMutation } from "@apollo/client";
-import { isLoggedInVar, logUserIn } from "../apollo";
-import { LOGIN_MUTATION } from "../quries";
+import { isLoggedInVar, logUserIn } from "../../apollo";
+import { LOGIN_MUTATION } from "../../quries";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
 
