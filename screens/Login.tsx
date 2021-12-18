@@ -15,7 +15,7 @@ import { Platform } from "react-native";
 
 //FETCH
 import { gql, useMutation } from "@apollo/client";
-import { isLoggedInVar } from "../apollo";
+import { isLoggedInVar, logUserIn } from "../apollo";
 import { LOGIN_MUTATION } from "../quries";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
@@ -29,13 +29,12 @@ const Login = ({ route: { params } }: LoginProps) => {
     },
   });
 
-  const onCompleted = (data: any) => {
+  const onCompleted = async (data: any) => {
     const {
       login: { ok, token },
     } = data;
     if (ok) {
-      isLoggedInVar(true);
-      console.log(token);
+      await logUserIn(token);
     }
   };
   const onValid: SubmitHandler<FieldValues> = (data) => {
