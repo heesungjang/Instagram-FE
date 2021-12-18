@@ -12,8 +12,8 @@ import LoggedOutNav from "./navigators/LoggedOutNav";
 import { NavigationContainer } from "@react-navigation/native";
 
 //FETCH
-import client, { isLoggedInVar, tokenVar } from "./apollo";
 import { ApolloProvider, useReactiveVar } from "@apollo/client";
+import client, { isLoggedInVar, tokenVar } from "./apollo";
 import LoggedInNav from "./navigators/LoggedInNav";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -23,7 +23,7 @@ const App: React.FC = () => {
 
   const onFinish = () => setLoading(false);
 
-  const preloadAssets = () => {
+  const preloadAssets = async () => {
     // 로드 폰트
     const fontToLoad = [Ionicons.font];
     const fontPromises = fontToLoad.map((font: any) => Font.loadAsync(font));
@@ -39,7 +39,7 @@ const App: React.FC = () => {
       isLoggedInVar(true);
       tokenVar(token);
     }
-    return preloadAssets();
+    preloadAssets();
   };
 
   if (loading) {

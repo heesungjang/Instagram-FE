@@ -1,9 +1,6 @@
 // REACtT
 import React from "react";
 
-// RN
-import { GestureResponderEvent } from "react-native";
-
 // NAVIGATION
 import { createStackNavigator } from "@react-navigation/stack";
 
