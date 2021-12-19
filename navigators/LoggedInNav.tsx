@@ -3,14 +3,11 @@ import React from "react";
 import { View } from "react-native";
 
 //COMPONENTS
-import Feed from "../screens/Feed";
-import Profile from "../screens/Profile";
-import Search from "../screens/Search";
 import TabIcon from "../components/nav/TabIcon";
-import Notifications from "../screens/CreateAccount/Notifications";
 
 //Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import StackNavFactory from "../components/nav/StackNavFactory";
 
 const RootTabs = createBottomTabNavigator();
 
@@ -26,18 +23,22 @@ const LoggedInNav = () => {
     >
       <RootTabs.Screen
         name="Feed"
-        component={Feed}
         options={{
           tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"home"} color={color} focused={focused} />,
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Feed" />}
+      </RootTabs.Screen>
+
       <RootTabs.Screen
         name="Search"
-        component={Search}
         options={{
           tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"search"} color={color} focused={focused} />,
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Search" />}
+      </RootTabs.Screen>
+
       <RootTabs.Screen
         name="Camera"
         component={View}
@@ -47,18 +48,20 @@ const LoggedInNav = () => {
       />
       <RootTabs.Screen
         name="Notifications"
-        component={Notifications}
         options={{
           tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"heart"} color={color} focused={focused} />,
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Notifications" />}
+      </RootTabs.Screen>
       <RootTabs.Screen
-        name="Profile"
-        component={Profile}
+        name="Me"
         options={{
           tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"person"} color={color} focused={focused} />,
         }}
-      />
+      >
+        {() => <StackNavFactory screenName="Me" />}
+      </RootTabs.Screen>
     </RootTabs.Navigator>
   );
 };

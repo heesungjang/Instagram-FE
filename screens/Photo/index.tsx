@@ -4,16 +4,16 @@ import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { RootStackNavigatorFactory } from "../../components/nav/StackNavFactory";
 
-type Props = NativeStackScreenProps<RootStackNavigatorFactory, "rootSearch">;
+type Props = NativeStackScreenProps<RootStackNavigatorFactory, "Photo">;
 
-const Search = ({ navigation }: Props) => {
+const Photo = ({ navigation }: Props) => {
   return (
     <View style={{ backgroundColor: "black", flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <TouchableOpacity onPress={() => navigation.navigate("Photo")}>
-        <Text style={{ color: "white", fontSize: 25 }}>Photo</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+        <Text style={{ color: "white", fontSize: 25 }}>Profile</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default Search;
+export default Photo;

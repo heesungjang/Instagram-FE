@@ -10,12 +10,11 @@ import { AuthTextInput } from "../../components/auth/AuthTextInput";
 import AuthLayout from "../../components/auth/AuthLayout";
 
 //HELPER
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigators/LoggedOutNav";
 import { CREATE_ACCOUNT_MUTATION } from "../../quries";
-import { createStackNavigator } from "@react-navigation/stack";
 
 type FormValues = {
   firstName: string;
