@@ -29,7 +29,16 @@ const Stack = createStackNavigator<RootStackNavigatorFactory>();
 
 const StackNavFactory = ({ screenName }: StackNavFactoryProps) => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerTintColor: "white",
+        headerStyle: {
+          shadowColor: "rgba(255,255,255,0.3)",
+          backgroundColor: "black",
+        },
+      }}
+    >
       {screenName === "Feed" ? <Stack.Screen name={"rootFeed"} component={Feed} /> : null}
       {screenName === "Search" ? <Stack.Screen name={"rootSearch"} component={Search} /> : null}
       {screenName === "Notifications" ? <Stack.Screen name={"rootNotifications"} component={Notifications} /> : null}
