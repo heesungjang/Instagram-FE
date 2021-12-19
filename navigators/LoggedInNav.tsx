@@ -7,7 +7,7 @@ import TabIcon from "../components/nav/TabIcon";
 
 //Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import StackNavFactory from "../components/nav/StackNavFactory";
+import StackNavFactory from "./StackNavFactory";
 
 const RootTabs = createBottomTabNavigator();
 
@@ -15,7 +15,6 @@ const LoggedInNav = () => {
   return (
     <RootTabs.Navigator
       screenOptions={{
-        tabBarShowLabel: false,
         tabBarStyle: { backgroundColor: "black", borderTopColor: "rgba(255,255,255,0.3)" },
         tabBarActiveTintColor: "white",
         headerShown: false,

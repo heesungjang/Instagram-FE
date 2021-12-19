@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { RootStackNavigatorFactory } from "../../components/nav/StackNavFactory";
+import { RootStackNavigatorFactory } from "../../navigators/StackNavFactory";
 
 type Props = NativeStackScreenProps<RootStackNavigatorFactory, "Photo">;
 

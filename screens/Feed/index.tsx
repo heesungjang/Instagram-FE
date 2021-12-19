@@ -1,10 +1,17 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { RootStackNavigatorFactory } from "../../navigators/StackNavFactory";
 
-const Feed = () => {
+type Props = NativeStackScreenProps<RootStackNavigatorFactory, "rootFeed">;
+
+const Feed = ({ navigation }: Props) => {
   return (
     <View style={{ backgroundColor: "black", flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{ color: "white", fontSize: 25 }}>hello, feed!</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Photo")}>
+        <Text style={{ color: "white", fontSize: 25 }}>Photo</Text>
+      </TouchableOpacity>
     </View>
   );
 };

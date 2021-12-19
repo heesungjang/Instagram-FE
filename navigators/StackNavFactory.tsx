@@ -2,15 +2,15 @@
 import React from "react";
 
 //COMPONENTS
-import Photo from "../../screens/Photo";
-import Profile from "../../screens/Profile";
+import Photo from "../screens/Photo";
+import Profile from "../screens/Profile";
 
 //NAVIGATION
 import { createStackNavigator } from "@react-navigation/stack";
-import Feed from "../../screens/Feed";
-import Search from "../../screens/Search";
-import Me from "../../screens/Me";
-import Notifications from "../../screens/CreateAccount/Notifications";
+import Feed from "../screens/Feed";
+import Search from "../screens/Search";
+import Me from "../screens/Me";
+import Notifications from "../screens/CreateAccount/Notifications";
 
 export type RootStackNavigatorFactory = {
   Profile: undefined;
