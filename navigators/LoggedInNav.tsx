@@ -1,14 +1,15 @@
 //REACT
 import React from "react";
+import { View } from "react-native";
 
 //COMPONENTS
 import Feed from "../screens/Feed";
 import Profile from "../screens/Profile";
 import Search from "../screens/Search";
+import TabIcon from "../components/nav/TabIcon";
 import Notifications from "../screens/CreateAccount/Notifications";
 
-//HELPER
-import { Ionicons } from "@expo/vector-icons";
+//Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const RootTabs = createBottomTabNavigator();
@@ -27,30 +28,35 @@ const LoggedInNav = () => {
         name="Feed"
         component={Feed}
         options={{
-          tabBarIcon: ({ focused, color, size }) => <Ionicons name="home" color={color} size={focused ? 24 : 20} />,
+          tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"home"} color={color} focused={focused} />,
         }}
       />
       <RootTabs.Screen
         name="Search"
         component={Search}
         options={{
-          tabBarIcon: ({ focused, color, size }) => <Ionicons name="search" color={color} size={focused ? 24 : 20} />,
+          tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"search"} color={color} focused={focused} />,
+        }}
+      />
+      <RootTabs.Screen
+        name="Camera"
+        component={View}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"camera"} color={color} focused={focused} />,
         }}
       />
       <RootTabs.Screen
         name="Notifications"
         component={Notifications}
         options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons name="notifications" color={color} size={focused ? 24 : 20} />
-          ),
+          tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"heart"} color={color} focused={focused} />,
         }}
       />
       <RootTabs.Screen
         name="Profile"
         component={Profile}
         options={{
-          tabBarIcon: ({ focused, color, size }) => <Ionicons name="person" color={color} size={focused ? 24 : 20} />,
+          tabBarIcon: ({ focused, color, size }) => <TabIcon iconName={"person"} color={color} focused={focused} />,
         }}
       />
     </RootTabs.Navigator>
